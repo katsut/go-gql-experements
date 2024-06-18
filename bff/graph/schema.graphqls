@@ -10,7 +10,7 @@ type User {
   age: String!
 }
 
-type NewUser {
+input NewUser {
   name: String!
   age: String!
 }

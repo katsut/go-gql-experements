@@ -7,8 +7,9 @@ RUN apt-get update && \
     postgresql-client \
     protobuf-compiler
 
+RUN go install github.com/air-verse/air@latest
+RUN go install github.com/golang/protobuf/protoc-gen-go@v1.5.4
+
+
 COPY go.mod go.sum ./
 RUN go mod download
-
-RUN go install github.com/air-verse/air@v1.52.1
-RUN go install github.com/golang/protobuf/protoc-gen-go@v1.5.4

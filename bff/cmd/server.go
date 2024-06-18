@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bff/internal/graph"
+	"bff/graph"
 	"log"
 	"net/http"
 	"os"

@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"userservice/internal/pb"
+	"userservice/pb"
 )
 
 type UserServiceServer struct{}

@@ -3,8 +3,7 @@ services:
     build: ./bff
     volumes:
       - ./bff:/app
-      # - ./vendor:/app/vendor
-      # - /app/vendor
+      - ./userservice:/userservice
     ports:
       - "8080:8080"
     command: air
@@ -15,8 +14,6 @@ services:
       - "50052:50052"
     volumes:
       - ./userservice:/app
-      # - ./vendor:/app
-      # - /app/vendor
     command: air
   # db:
   #   image: mysql:latest

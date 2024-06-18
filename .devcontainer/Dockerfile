@@ -1,6 +1,6 @@
 FROM golang:1.22.4
 
-WORKDIR /app
+WORKDIR /app/bff
 
 RUN apt-get update && \
     apt-get install -y \
