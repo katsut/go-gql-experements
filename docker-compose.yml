@@ -1,0 +1,29 @@
+services:
+  bff:
+    build: ./bff
+    volumes:
+      - ./bff:/app
+      # - ./vendor:/app/vendor
+      # - /app/vendor
+    ports:
+      - "8080:8080"
+    command: air
+
+  userservice:
+    build: ./userservice
+    ports:
+      - "50052:50052"
+    volumes:
+      - ./userservice:/app
+      # - ./vendor:/app
+      # - /app/vendor
+    command: air
+  # db:
+  #   image: mysql:latest
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: bnn
+  #   volumes:
+  #     - ./data:/var/lib/mysql

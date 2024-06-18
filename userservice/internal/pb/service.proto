@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "./pb";
+
+package pb;
+
+service UserService {
+  rpc GetUser(GetUserParams) returns (User) {}
+//   rpc ListUsers(GetUserParams) returns (stream User) {}
+//   rpc CreateUser(User) returns (User) {}
+//   rpc UpdateUser(User) returns (User) {}
+//   rpc DeleteUser(User) returns (User) {}
+}
+
+message GetUserParams { string id = 1; }
+
+message User {
+  string id = 1;
+  string name = 2;
+  int64 age = 3;
+}
+

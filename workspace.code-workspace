@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "bnn",
+		},
+		{
+			"path": "./bff",
+			"name": "bff"
+		},
+		{
+			"path": "./userservice",
+			"name": "userservice"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			".history/**": true,
+			"**/userservice/**": true,
+			"**/bff/**": true,
+			"**/tmp/**": false
+		}
+	}
+}

@@ -1,0 +1,57 @@
+# Ignore compiled binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore build artifacts
+build/
+dist/
+node_modules/
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Go build files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Ignore Go binary
+bin/
+
+# Ignore Go test files
+*.test
+
+# Ignore Go coverage files
+*.cov
+
+# Ignore Go documentation files
+*.doc
+
+# Ignore Go vendor directory
+vendor/
+
+# Ignore Go module cache
+/go/pkg/
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.history/
+
+# Ignore build artifacts
+build/
+dist/
+node_modules/
+tmp/
