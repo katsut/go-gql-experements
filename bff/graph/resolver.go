@@ -10,3 +10,7 @@ import (
 type Resolver struct {
 	client pb.UserServiceClient
 }
+
+func NewResolver(client pb.UserServiceClient) *Resolver {
+	return &Resolver{client: client}
+}

@@ -8,6 +8,7 @@ import (
 	"bff/graph/model"
 	"context"
 	"fmt"
+	"userservice/pb"
 )
 
 // CreateUser is the resolver for the createUser field.
@@ -15,9 +16,23 @@ func (r *mutationResolver) CreateUser(ctx context.Context, newUser model.NewUser
 	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
 }
 
+func userToModel(pbUser *pb.User) *model.User {
+	return &model.User{
+		ID:   pbUser.Id,
+		Name: pbUser.Name,
+	}
+}
+
 // User is the resolver for the user field.
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	panic(fmt.Errorf("not implemented: User - user"))
+	params := &pb.GetUserParams{Id: id}
+
+	user, err := r.client.GetUser(ctx, params)
+	if err != nil {
+		return nil, err
+	}
+
+	return userToModel(user), nil
 }
 
 // Mutation returns MutationResolver implementation.
