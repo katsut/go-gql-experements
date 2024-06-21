@@ -8,8 +8,8 @@ import (
 
 	"google.golang.org/grpc"
 
-	"userservice/internal/pb"
 	"userservice/internal/service"
+	"userservice/pb"
 )
 
 var (

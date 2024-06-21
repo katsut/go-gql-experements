@@ -13,6 +13,7 @@ func NewUserServiceServer() *UserServiceServer {
 }
 
 func (s *UserServiceServer) GetUser(_ context.Context, _ *pb.GetUserParams) (*pb.User, error) {
+
 	user := pb.User{
 		Id:   "uuid",
 		Name: "長尾景虎",

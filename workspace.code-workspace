@@ -2,7 +2,7 @@
 	"folders": [
 		{
 			"path": ".",
-			"name": "bnn",
+			"name": "root",
 		},
 		{
 			"path": "./bff",
@@ -20,6 +20,24 @@
 			"**/userservice/**": true,
 			"**/bff/**": true,
 			"**/tmp/**": false
-		}
+		},
+		"sqltools.autoConnectTo": "userservice",
+		"sqltools.connections": [
+			{
+				"mysqlOptions": {
+					"authProtocol": "default",
+					"enableSsl": "Disabled"
+				},
+				"previewLimit": 50,
+				"server": "localhost",
+				"port": 3306,
+				"driver": "MySQL",
+				"name": "app",
+				"group": "local",
+				"username": "root",
+				"password": "root_password",
+				"database": "app"
+			}
+		]
 	}
 }

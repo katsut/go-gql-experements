@@ -55,3 +55,6 @@ build/
 dist/
 node_modules/
 tmp/
+data/
+.ssh/
+.github/

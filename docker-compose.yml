@@ -1,4 +1,5 @@
 services:
+
   bff:
     build: ./bff
     volumes:
@@ -6,7 +7,10 @@ services:
       - ./userservice:/userservice
     ports:
       - "8080:8080"
-    command: air
+    command: >
+      sh -c "go mod download && air"
+    depends_on:
+      - db
 
   userservice:
     build: ./userservice
@@ -14,13 +18,30 @@ services:
       - "50052:50052"
     volumes:
       - ./userservice:/app
-    command: air
-  # db:
-  #   image: mysql:latest
-  #   ports:
-  #     - "3306:3306"
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: password
-  #     MYSQL_DATABASE: bnn
-  #   volumes:
-  #     - ./data:/var/lib/mysql
+    command: >
+      sh -c "go mod download && air"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_USER: cd_user
+      MYSQL_PASSWORD: cd_password
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: app
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./db/conf.d:/etc/mysql/conf.d
+  
+  migration:
+    build: ./migration
+    env_file:
+      - ./migration/.env
+    volumes:
+      - ./migration:/app
+    command: goose up
+    depends_on:
+      - db
