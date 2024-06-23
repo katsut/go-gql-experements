@@ -9,6 +9,7 @@ RUN apt-get update && \
 
 RUN go install github.com/air-verse/air@latest
 RUN go install github.com/golang/protobuf/protoc-gen-go@v1.5.4
+RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.4.0
 
 COPY go.mod go.sum ./
 RUN go mod download

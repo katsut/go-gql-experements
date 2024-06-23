@@ -2,22 +2,28 @@ package service
 
 import (
 	"context"
+	"userservice/internal/dao/query"
 	"userservice/pb"
 )
 
-type UserServiceServer struct{}
+type UserServiceServer struct {
+}
 
 // Constructor
 func NewUserServiceServer() *UserServiceServer {
 	return &UserServiceServer{}
 }
 
-func (s *UserServiceServer) GetUser(_ context.Context, _ *pb.GetUserParams) (*pb.User, error) {
-
-	user := pb.User{
-		Id:   "uuid",
-		Name: "長尾景虎",
-		Age:  25,
+func (s *UserServiceServer) GetUser(c context.Context, p *pb.GetUserParams) (*pb.User, error) {
+	u := query.User
+	user, err := query.User.WithContext(c).Where(u.ID.Eq(p.Id)).First()
+	if err != nil {
+		return nil, err
 	}
-	return &user, nil
+	return &pb.User{
+		Id:   user.ID,
+		Name: user.Name,
+		Age:  user.Age,
+	}, nil
+
 }

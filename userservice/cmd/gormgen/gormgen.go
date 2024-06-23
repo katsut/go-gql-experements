@@ -3,13 +3,26 @@ package main
 import (
 	"log"
 
+	"os"
+
+	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gen"
 	"gorm.io/gorm"
 )
 
 func main() {
-	dsn := "user:password@tcp(db:3306)/root?charset=utf8mb4&parseTime=True&loc=Local"
+
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatalf("Error loading .env file")
+	}
+
+	dsn := os.Getenv("DB_CONNECTION_STRING")
+	if dsn == "" {
+		log.Fatal("DB_CONNECTION_STRING environment variable is not set")
+	}
+
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
@@ -17,7 +30,7 @@ func main() {
 
 	// インスタンス化
 	g := gen.NewGenerator(gen.Config{
-		OutPath: "dao/query",
+		OutPath: "/app/internal/dao/query",
 		Mode:    gen.WithDefaultQuery,
 	})
 
