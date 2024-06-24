@@ -8,6 +8,7 @@ import (
 	"bff/graph/model"
 	"context"
 	"fmt"
+	"strconv"
 	"userservice/pb"
 )
 
@@ -16,16 +17,13 @@ func (r *mutationResolver) CreateUser(ctx context.Context, newUser model.NewUser
 	panic(fmt.Errorf("not implemented: CreateUser - createUser"))
 }
 
-func userToModel(pbUser *pb.User) *model.User {
-	return &model.User{
-		ID:   pbUser.Id,
-		Name: pbUser.Name,
-	}
-}
-
 // User is the resolver for the user field.
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
-	params := &pb.GetUserParams{Id: id}
+	userId, err := strconv.Atoi(id) // IDをintに変換
+	if err != nil {
+		return nil, err
+	}
+	params := &pb.GetUserParams{Id: int32(userId)}
 
 	user, err := r.client.GetUser(ctx, params)
 	if err != nil {
@@ -50,3 +48,9 @@ type queryResolver struct{ *Resolver }
 //   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
 //     it when you're done.
 //   - You have helper methods in this file. Move them out to keep these resolver files clean.
+func userToModel(pbUser *pb.User) *model.User {
+	return &model.User{
+		ID:   strconv.Itoa(int(pbUser.Id)),
+		Name: pbUser.Name,
+	}
+}

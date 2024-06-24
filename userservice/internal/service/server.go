@@ -7,16 +7,17 @@ import (
 )
 
 type UserServiceServer struct {
+	q *query.Query
 }
 
 // Constructor
-func NewUserServiceServer() *UserServiceServer {
-	return &UserServiceServer{}
+func NewUserServiceServer(q *query.Query) *UserServiceServer {
+	return &UserServiceServer{q}
 }
 
 func (s *UserServiceServer) GetUser(c context.Context, p *pb.GetUserParams) (*pb.User, error) {
-	u := query.User
-	user, err := query.User.WithContext(c).Where(u.ID.Eq(p.Id)).First()
+	u := s.q.User
+	user, err := u.WithContext(c).Where(u.ID.Eq(p.Id)).First()
 	if err != nil {
 		return nil, err
 	}

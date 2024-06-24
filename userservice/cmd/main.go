@@ -9,6 +9,7 @@ import (
 
 	"google.golang.org/grpc"
 
+	"userservice/internal/dao/query"
 	"userservice/internal/service"
 	"userservice/pb"
 
@@ -39,13 +40,15 @@ func main() {
 		log.Fatal("DB_CONNECTION_STRING environment variable is not set")
 	}
 
-	_, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	query := query.Use(db)
+
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	pb.RegisterUserServiceServer(grpcServer, service.NewUserServiceServer())
+	pb.RegisterUserServiceServer(grpcServer, service.NewUserServiceServer(query))
 	grpcServer.Serve(lis)
 }
