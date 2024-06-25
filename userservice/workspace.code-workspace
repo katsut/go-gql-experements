@@ -2,24 +2,12 @@
 	"folders": [
 		{
 			"path": ".",
-			"name": "root",
-		},
-		{
-			"path": "./bff",
-			"name": "bff"
-		},
-		{
-			"path": "./userservice",
-			"name": "userservice"
 		}
 	],
 	"settings": {
 		"files.exclude": {
-			"**/.git": true,
 			".history/**": true,
 			"**/tmp/**": true,
-			"userservice": true,
-			"bff": true
 		},
 		"sqltools.autoConnectTo": "userservice",
 		"sqltools.connections": [

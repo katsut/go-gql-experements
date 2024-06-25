@@ -4,8 +4,9 @@ WORKDIR /app
 
 RUN apt-get update && \
     apt-get install -y \
-    postgresql-client \
-    protobuf-compiler
+    default-mysql-client \
+    protobuf-compiler \
+    jq
 
 RUN go install github.com/air-verse/air@latest
 RUN go install github.com/golang/protobuf/protoc-gen-go@v1.5.4

@@ -1,5 +1,4 @@
 services:
-
   bff:
     build: ./bff
     volumes:
@@ -35,7 +34,7 @@ services:
     volumes:
       - ./data:/var/lib/mysql
       - ./db/conf.d:/etc/mysql/conf.d
-  
+
   migration:
     build: ./migration
     env_file:

@@ -8,6 +8,7 @@ import (
 	"bff/graph/model"
 	"context"
 	"fmt"
+	"log/slog"
 	"strconv"
 	"userservice/pb"
 )
@@ -19,6 +20,7 @@ func (r *mutationResolver) CreateUser(ctx context.Context, newUser model.NewUser
 
 // User is the resolver for the user field.
 func (r *queryResolver) User(ctx context.Context, id string) (*model.User, error) {
+	slog.Info("User")
 	userId, err := strconv.Atoi(id) // IDをintに変換
 	if err != nil {
 		return nil, err

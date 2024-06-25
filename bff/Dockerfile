@@ -7,4 +7,4 @@ RUN go install github.com/air-verse/air@latest
 RUN go install github.com/99designs/gqlgen@v0.17.48
 
 COPY go.mod go.sum ./
-# RUN go mod download
+RUN go mod download
